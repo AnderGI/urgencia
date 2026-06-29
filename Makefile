@@ -3,9 +3,12 @@
 # (tab) 	shell lines or recipes
 # 👆 This is a rule 👆
 
-# Author of this target: "Jesús L" CodelyTV platform user. Thkss :)
-help: ## Prints this help.
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
+see: ## Prints this help.
+	while IFS= read -r line; do \
+        if printf '%s\n' "$$line" | grep -Eq '^[a-z_/]+: *## .+'; then \
+            printf '%s\n' "$$line"; \
+        fi ;\
+   done < Makefile
 
 # This special target silences all shell lines
 .SILENT:
@@ -13,7 +16,7 @@ help: ## Prints this help.
 test:
 	echo "testing the makefile"
 
-gradlew/help: ## help for ./gradlew sh command line
+gradlew/help: ## Prints this help.
 	./gradlew --help
 
 gradlew/clean: ## delete content of the build directory
