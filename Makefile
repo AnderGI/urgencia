@@ -3,24 +3,17 @@
 # (tab) 	shell lines or recipes
 # 👆 This is a rule 👆
 
-see: ## Prints this help.
-	while IFS= read -r line; do \
-        if printf '%s\n' "$$line" | grep -Eq '^[a-z_/]+: *## .+'; then \
-            printf '%s\n' "$$line"; \
-        fi ;\
-   done < Makefile
+help:## help.sh script made by Sebastian Steenssøe, author of "Make your Makefile user-friendly: Create a custom ‘help’ target" Medium article
+	./etc/scripts/Makefile/help.sh "$(MAKEFILE_LIST)"
 
-# This special target silences all shell lines
-.SILENT:
-
-test:
-	echo "testing the makefile"
-
-gradlew/help: ## Prints this help.
+gradlew/help:## gradlew help command
 	./gradlew --help
 
-gradlew/clean: ## delete content of the build directory
+gradlew/clean:## delete content of the build directory
 	./gradlew clean
 
-gradlew/build: ## build a gradle project
+gradlew/build:## build a gradle project
 	./gradlew build
+
+gradlew/test:## run all codebase tests
+	./gradlew test
