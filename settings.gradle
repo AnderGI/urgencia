@@ -1,6 +1,6 @@
 println('SETTINGS FILE: This is executed during the initialization phase')
 
-rootProject.name = 'java-ddd-template'
+rootProject.name = 'urgencia'
 
 include ':apps-backoffice-backend'
 project(':apps-backoffice-backend').projectDir = file('apps/backoffice/backend')
