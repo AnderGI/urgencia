@@ -1,5 +1,6 @@
 package com.andergi.javadddtemplate.src.shared.domain.value_objects;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class UuidValueObject extends StringValueObject {
@@ -13,4 +14,10 @@ public class UuidValueObject extends StringValueObject {
         UUID.fromString(id);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        UuidValueObject uuid = (UuidValueObject) o;
+        return Objects.equals(uuid.value(), ((UuidValueObject) o).value());
+    }
 }
